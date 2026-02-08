@@ -1,0 +1,12 @@
+{
+  "members": [
+    {
+      "id": "member-001",
+      "name": "Example Member",
+      "website": "https://example.com",
+      "image": "https://liashess.ch/members/member-001.png",
+      "description": "My vintage translucent iMac G3",
+      "dateAdded": "2025-02-08"
+    }
+  ]
+}
