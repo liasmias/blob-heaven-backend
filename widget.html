@@ -1,0 +1,101 @@
+<!-- BLOB HEAVEN WEBRING WIDGET -->
+<!-- Ersetze MEMBER-ID mit deiner Member-ID (z.B. "member-001") -->
+<div class="blob-ring" id="blob-ring">
+  <div class="blob-ring-frame">
+    <img class="blob-ring-member-img" id="blob-ring-img" src="" alt="Webring Member" />
+  </div>
+  <div class="blob-ring-nav">
+    <a id="blob-ring-prev" href="#" class="blob-ring-btn">← prev</a>
+    <a href="https://liashess.ch" class="blob-ring-btn blob-ring-hub">blob heaven</a>
+    <a id="blob-ring-next" href="#" class="blob-ring-btn">next →</a>
+  </div>
+</div>
+
+<style>
+  .blob-ring {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-family: sans-serif;
+  }
+
+  .blob-ring-frame {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    background-image: url('01_images/01_webring/blob_frame.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .blob-ring-member-img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  .blob-ring-nav {
+    display: flex;
+    gap: 6px;
+  }
+
+  .blob-ring-btn {
+    padding: 6px 14px;
+    border: none;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .blob-ring-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
+  }
+
+  .blob-ring-hub {
+    background: rgba(255, 255, 255, 0.35);
+    font-weight: bold;
+  }
+</style>
+
+<script>
+  (function () {
+    // ⬇️ HIER DEINE MEMBER-ID EINSETZEN ⬇️
+    const MY_MEMBER_ID = 'member-001';
+
+    const API = 'https://blobheaven.netlify.app';
+
+    // Fetch member data and set image
+    fetch(API + '/members.json')
+      .then(res => res.json())
+      .then(data => {
+        const member = data.members.find(m => m.id === MY_MEMBER_ID);
+        if (member && member.image) {
+          document.getElementById('blob-ring-img').src = member.image;
+          document.getElementById('blob-ring-img').alt = member.name;
+        }
+      })
+      .catch(err => console.warn('Blob Heaven Widget: Could not load members', err));
+
+    // Set navigation links
+    document.getElementById('blob-ring-prev').href =
+      API + '/.netlify/functions/prev?via=' + MY_MEMBER_ID;
+    document.getElementById('blob-ring-next').href =
+      API + '/.netlify/functions/next?via=' + MY_MEMBER_ID;
+  })();
+</script>
+<!-- END BLOB HEAVEN WEBRING WIDGET -->

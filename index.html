@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>blob heaven</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 198px;
+      height: 198px;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+
+    .widget {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .frame {
+      position: relative;
+      width: 160px;
+      height: 120px;
+    }
+
+    .frame-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .member-img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 120px;
+      height: 82px;
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    .title {
+      font-size: 10px;
+      color: #7ba4cc;
+      text-decoration: none;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    .title:hover {
+      color: #5a8ab8;
+    }
+
+    .nav {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .nav a {
+      padding: 3px 10px;
+      border-radius: 12px;
+      background: rgba(123, 164, 204, 0.15);
+      border: 1px solid rgba(123, 164, 204, 0.3);
+      color: #7ba4cc;
+      text-decoration: none;
+      font-size: 10px;
+      transition: all 0.2s ease;
+    }
+
+    .nav a:hover {
+      background: rgba(123, 164, 204, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="widget">
+    <a href="https://liashess.ch" target="_blank" class="title">✦ blob heaven ✦</a>
+    <div class="frame">
+      <img class="member-img" id="member-img" src="" alt="" />
+      <img class="frame-bg" src="blob_frame.png" alt="" />
+    </div>
+    <div class="nav">
+      <a id="prev" href="#" target="_top">← prev</a>
+      <a id="random" href="#" target="_top">random</a>
+      <a id="next" href="#" target="_top">next →</a>
+    </div>
+  </div>
+
+  <script>
+    const API = 'https://blobheaven.netlify.app';
+    const params = new URLSearchParams(window.location.search);
+    const siteUrl = params.get('site');
+
+    fetch(API + '/members.json')
+      .then(res => res.json())
+      .then(data => {
+        // Find member by website URL
+        const member = data.members.find(m => {
+          const memberUrl = m.website.replace(/\/+$/, '');
+          const searchUrl = (siteUrl || '').replace(/\/+$/, '');
+          return memberUrl === searchUrl;
+        });
+
+        if (member) {
+          document.getElementById('member-img').src = member.image;
+          document.getElementById('member-img').alt = member.name;
+          document.getElementById('prev').href = API + '/.netlify/functions/prev?via=' + member.id;
+          document.getElementById('next').href = API + '/.netlify/functions/next?via=' + member.id;
+          document.getElementById('random').href = API + '/.netlify/functions/random?via=' + member.id;
+        }
+      })
+      .catch(err => console.warn('blob heaven: could not load members', err));
+  </script>
+</body>
+</html>
