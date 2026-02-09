@@ -25,16 +25,6 @@
 
   @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
 
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  body {
-    background: transparent;
-  }
-
   .blob-ring {
     display: flex;
     flex-direction: column;
@@ -183,7 +173,6 @@
     fetch(API + '/members.json')
       .then(res => res.json())
       .then(data => {
-        // Find member by site URL
         const member = data.members.find(m => {
           const memberUrl = m.website.replace(/\/+$/, '');
           const searchUrl = (siteUrl || '').replace(/\/+$/, '');
