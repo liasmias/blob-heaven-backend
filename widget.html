@@ -3,9 +3,8 @@
 <div class="blob-ring" id="blob-ring">
   <p class="blob-ring-title" id="blob-ring-title"></p>
   <div class="blob-ring-frame">
-    <div class="blob-ring-member-img" id="blob-ring-img">
-      <div class="blob-ring-member-shadow"></div>
-    </div>
+    <div class="blob-ring-member-img" id="blob-ring-img"></div>
+    <div class="blob-ring-member-shadow"></div>
   </div>
   <div class="blob-ring-nav">
     <a id="blob-ring-prev" href="#" class="blob-ring-btn"><span>← prev</span></a>
@@ -52,14 +51,25 @@
     position: relative;
     width: 200px;
     height: 200px;
-    background-image: url('blob_frame.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
     display: flex;
     align-items: center;
     justify-content: center;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+  }
+
+  .blob-ring-frame::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('blob_frame.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 2;
+    pointer-events: none;
   }
 
   .blob-ring-member-img {
@@ -68,15 +78,17 @@
     background-size: cover;
     background-position: center;
     position: relative;
-    z-index: -1;
+    z-index: 0;
   }
 
   .blob-ring-member-shadow {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    width: 140px;
+    height: 140px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
     z-index: 1;
     box-shadow:
       inset 0 4px 16px rgba(121, 159, 212, 0.2),

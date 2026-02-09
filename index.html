@@ -11,9 +11,8 @@
 <div class="blob-ring" id="blob-ring">
   <p class="blob-ring-title" id="blob-ring-title"></p>
   <div class="blob-ring-frame">
-    <div class="blob-ring-member-img" id="blob-ring-img">
-      <div class="blob-ring-member-shadow"></div>
-    </div>
+    <div class="blob-ring-member-img" id="blob-ring-img"></div>
+    <div class="blob-ring-member-shadow"></div>
   </div>
   <div class="blob-ring-nav">
     <a id="blob-ring-prev" href="#" target="_top" class="blob-ring-btn"><span>← prev</span></a>
@@ -32,19 +31,19 @@
     gap: 8px;
     font-family: 'EB Garamond', serif;
     font-weight: 200;
-    background: rgba(173, 216, 240, 0.15);
+    background: rgb(173, 216, 240);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(173, 216, 240, 0.12);
     border-radius: 20px;
-    padding: 10px;
-    width: 160px;
+    padding: 24px 40px;
+    width: 150px;
   }
 
   .blob-ring-title {
     font-family: 'EB Garamond', serif;
     font-weight: 200;
-    font-size: 10px;
+    font-size: 14px;
     color: #65aaeb;
     text-align: center;
     margin: 0;
@@ -58,33 +57,46 @@
 
   .blob-ring-frame {
     position: relative;
-    width: 140px;
-    height: 105px;
-    background-image: url('blob_frame.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+    width: 200px;
+    height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
   }
 
-  .blob-ring-member-img {
-    width: 100px;
-    height: 70px;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    z-index: -1;
-  }
-
-  .blob-ring-member-shadow {
+  .blob-ring-frame::after {
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+    background-image: url('blob_frame.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .blob-ring-member-img {
+    width: 140px;
+    height: 140px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    z-index: 0;
+  }
+
+  .blob-ring-member-shadow {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
     z-index: 1;
     box-shadow:
       inset 0 4px 16px rgba(121, 159, 212, 0.2),
@@ -96,13 +108,13 @@
   .blob-ring-nav {
     display: flex;
     gap: 6px;
-    width: 140px;
+    width: 200px;
   }
 
   .blob-ring-btn {
     font-family: 'EB Garamond', serif;
     font-weight: 600;
-    font-size: 9px;
+    font-size: 10px;
     text-align: center;
     color: transparent;
     display: inline-block;
