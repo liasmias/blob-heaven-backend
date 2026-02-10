@@ -8,21 +8,5 @@
       "description": "My vintage translucent iMac G3",
       "dateAdded": "2025-02-08"
     }
-{
-      "id": "member-002",
-      "name": "test",
-      "website": "https://google.ch",
-      "image": "https://liashess.ch/members/member-001.png",
-      "description": "My vintage translucent iMac G3",
-      "dateAdded": "2025-02-08"
-    }
-{
-      "id": "member-003",
-      "name": "test",
-      "website": "https://bluewin.ch",
-      "image": "https://liashess.ch/members/member-001.png",
-      "description": "My vintage translucent iMac G3",
-      "dateAdded": "2025-02-08"
-    }
   ]
 }
