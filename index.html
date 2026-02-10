@@ -24,27 +24,39 @@
 
   @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
 
+  html, body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    background: transparent;
+  }
+
   .blob-ring {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     font-family: 'EB Garamond', serif;
     font-weight: 200;
     background: rgba(173, 216, 240, 0.15);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(173, 216, 240, 0.12);
-    border-radius: 20px;
+    border-radius: 16px;
     box-shadow: 0 0 20px 8px rgba(255, 255, 255, 0.6);
-    padding: 24px 40px;
-    width: 150px;
+    padding: 16px 12px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 200px;
   }
 
   .blob-ring-title {
     font-family: 'EB Garamond', serif;
     font-weight: 200;
-    font-size: 14px;
+    font-size: 12px;
     color: #65aaeb;
     text-align: center;
     margin: 0;
@@ -58,8 +70,8 @@
 
   .blob-ring-frame {
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 140px;
+    height: 140px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -82,8 +94,8 @@
   }
 
   .blob-ring-member-img {
-    width: 140px;
-    height: 140px;
+    width: 100px;
+    height: 100px;
     background-size: cover;
     background-position: center;
     position: relative;
@@ -92,8 +104,8 @@
 
   .blob-ring-member-shadow {
     position: absolute;
-    width: 140px;
-    height: 140px;
+    width: 100px;
+    height: 100px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -107,8 +119,8 @@
 
   .blob-ring-nav {
     display: flex;
-    gap: 6px;
-    width: 200px;
+    gap: 4px;
+    width: 100%;
   }
 
   .blob-ring-btn {
