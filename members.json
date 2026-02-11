@@ -2,11 +2,19 @@
   "members": [
     {
       "id": "member-001",
-      "name": "spaetzli",
+      "name": "Lias Hess",
       "website": "https://liashess.ch",
       "image": "https://liashess.ch/members/member-001.png",
       "description": "My vintage translucent iMac G3",
       "dateAdded": "2025-02-08"
+    },
+    {
+      "id": "member-002",
+      "name": "member2",
+      "website": "https://bluewin.ch",
+      "image": "https://example.com/members/member-002.png",
+      "description": "Beschreibung",
+      "dateAdded": "2026-02-11"
     }
   ]
 }
