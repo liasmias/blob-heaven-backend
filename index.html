@@ -235,4 +235,12 @@
       })
       .catch(err => console.warn('Blob Heaven Widget: Could not load members', err));
   })();
+
+  // Auto-resize: send height to parent so iframe adjusts automatically
+  function sendHeight() {
+    const height = document.querySelector('.blob-ring').scrollHeight;
+    window.parent.postMessage({ blobHeaven: true, height: height }, '*');
+  }
+  window.addEventListener('load', () => setTimeout(sendHeight, 300));
+  new ResizeObserver(sendHeight).observe(document.querySelector('.blob-ring'));
 </script>
