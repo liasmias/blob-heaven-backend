@@ -86,7 +86,7 @@
   .blob-ring-frame {
     position: relative;
     width: calc(var(--widget-size) * 1);
-    height: calc(var(--widget-size) * 1);
+    height: calc(var(--widget-size) *);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -241,18 +241,4 @@
       })
       .catch(err => console.warn('Blob Heaven Widget: Could not load members', err));
   })();
-
-  // Auto-resize: send height to parent so iframe adjusts automatically
-  function sendHeight() {
-    const ring = document.querySelector('.blob-ring');
-    if (!ring) return;
-    const height = Math.max(ring.offsetHeight, ring.scrollHeight, document.body.scrollHeight);
-    window.parent.postMessage({ blobHeaven: true, height: height }, '*');
-  }
-  window.addEventListener('load', () => {
-    sendHeight();
-    setTimeout(sendHeight, 500);
-    setTimeout(sendHeight, 1500);
-  });
-  new ResizeObserver(sendHeight).observe(document.querySelector('.blob-ring'));
 </script>
