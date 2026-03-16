@@ -239,8 +239,8 @@
             API + '/.netlify/functions/next?via=' + member.id;
         }
       })
-  }).catch(err => console.warn('Blob Heaven Widget: Could not load members', err));
-  }) ();
+      .catch(err => console.warn('Blob Heaven Widget: Could not load members', err));
+  })();
 
   // Auto-resize: send height to parent so iframe adjusts automatically
   function sendHeight() {
