@@ -36,7 +36,6 @@
     font-family: 'EB Garamond', serif;
     font-weight: 200;
     background: transparent;
-    min-height: 100vh;
     position: relative;
     overflow: hidden;
     backdrop-filter: blur(3.6px);
@@ -44,7 +43,7 @@
     border: 4px solid rgba(255, 255, 255, 0.6);
     border-radius: 20px;
     box-shadow: inset 1px 1px 3px rgba(225, 225, 225, 0.8);
-    padding: calc(var(--widget-size) * 0.096) calc(var(--widget-size) * 0.1);
+    padding: calc(var(--widget-size) * 0.06) calc(var(--widget-size) * 0.1);
     width: var(--widget-size);
     box-sizing: border-box;
   }
@@ -82,8 +81,8 @@
 
   .blob-ring-frame {
     position: relative;
-    width: calc(var(--widget-size) * 1);
-    height: calc(var(--widget-size) * 1.1);
+    width: calc(var(--widget-size) * 0.8);
+    aspect-ratio: 1 / 1.1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -113,8 +112,8 @@
   }
 
   .blob-ring-member-img {
-    width: calc(var(--widget-size) * 0.8);
-    height: calc(var(--widget-size) * 0.8);
+    width: calc(var(--widget-size) * 0.4);
+    height: calc(var(--widget-size) * 0.4);
     background-size: cover;
     background-position: center;
     position: relative;
@@ -123,8 +122,8 @@
 
   .blob-ring-member-shadow {
     position: absolute;
-    width: calc(var(--widget-size) * 0.8);
-    height: calc(var(--widget-size) * 0.8);
+    width: calc(var(--widget-size) * 0.4);
+    height: calc(var(--widget-size) * 0.4);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -140,7 +139,7 @@
   .blob-ring-nav {
     display: flex;
     gap: calc(var(--widget-size) * 0.024);
-    width: calc(var(--widget-size) * 0.9);
+    width: calc(var(--widget-size) * 0.8);
   }
 
   .blob-ring-btn {
@@ -237,5 +236,14 @@
         }
       })
       .catch(err => console.warn('Blob Heaven Widget: Could not load members', err));
+
+    // Report height to parent for iframe auto-resizing
+    function reportHeight() {
+      const height = document.getElementById('blob-ring').offsetHeight;
+      window.parent.postMessage({ blobWidgetHeight: height }, '*');
+    }
+    window.addEventListener('load', reportHeight);
+    window.addEventListener('resize', reportHeight);
+    new ResizeObserver(reportHeight).observe(document.getElementById('blob-ring'));
   })();
 </script>
