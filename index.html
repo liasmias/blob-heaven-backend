@@ -81,8 +81,8 @@
 
   .blob-ring-frame {
     position: relative;
-    width: calc(var(--widget-size) * 0.95);
-    height: calc(var(--widget-size) * 0.88);
+    width: calc(var(--widget-size) * 1);
+    height: calc(var(--widget-size) * 1);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -226,7 +226,15 @@
         if (member && member.image) {
           document.getElementById('blob-ring-img').style.backgroundImage = 'url(' + member.image + ')';
           document.getElementById('blob-ring-img').title = member.name;
-          document.getElementById('blob-ring-title').innerHTML = member.name + ' is part of <a href="https://liashess.ch/blobheaven" target="_blank" class="blob-ring-title-link">Blob Heaven</a>';
+          const titleEl = document.getElementById('blob-ring-title');
+          titleEl.textContent = '';
+          titleEl.append(member.name + ' is part of ');
+          const link = document.createElement('a');
+          link.href = 'https://liashess.ch/blobheaven';
+          link.target = '_blank';
+          link.className = 'blob-ring-title-link';
+          link.textContent = 'Blob Heaven';
+          titleEl.appendChild(link);
 
           // Set navigation links
           document.getElementById('blob-ring-prev').href =
