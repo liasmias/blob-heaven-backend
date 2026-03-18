@@ -228,7 +228,8 @@
           document.getElementById('blob-ring-img').title = member.name;
           const titleEl = document.getElementById('blob-ring-title');
           titleEl.textContent = '';
-          titleEl.append(member.name + ' is part of ');
+          titleEl.append(member.name + ' is part of');
+          titleEl.appendChild(document.createElement('br'));
           const link = document.createElement('a');
           link.href = 'https://liashess.ch/blobheaven';
           link.target = '_blank';
